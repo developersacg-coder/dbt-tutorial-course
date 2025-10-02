@@ -11,10 +11,11 @@ models:
         # Model tests (run AFTER model is built)
         tests:
           - not_null:
-              severity: error
+              config:
+                severity: error
           - unique:
-              severity: error
-        # Model contract (run BEFORE model is built)
+              config:
+                severity: error
         data_type: INTEGER
         constraints:
           # Note - we could get rid of the not_null check above as it basically duplicates the contract
@@ -25,9 +26,9 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_ecommerce__orders')
-              field: order_id
-
+              arguments:
+                to: ref('stg_ecommerce__orders')
+                field: order_id
       - name: user_id
         data_type: INTEGER
         tests:
@@ -38,13 +39,14 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_ecommerce__products')
-              field: product_id
-
+              arguments:
+                to: ref('stg_ecommerce__products')
+                field: product_id
       - name: item_sale_price
         data_type: FLOAT64
         description: "How much the item sold for"
         tests:
           - not_null
           - dbt_expectations.expect_column_values_to_be_between:
-              min_value: 0
+              arguments:
+                min_value: 0

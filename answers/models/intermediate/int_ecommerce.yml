@@ -14,10 +14,11 @@ models:
       - name: order_item_id
         tests:
           - not_null:
-              severity: error
+              config:
+                severity: error
           - unique:
-              severity: error
-
+              config:
+                severity: error
       - name: order_id
         tests:
           - not_null
@@ -58,16 +59,15 @@ models:
         tests:
           - not_null
           - dbt_utils.expression_is_true:
-              expression: "= (item_sale_price - product_cost)"
-
+              arguments:
+                expression: "= (item_sale_price - product_cost)"
       - name: item_discount
         description: "product_retail_price minus item_sale_price"
         tests:
           - not_null
           - dbt_utils.expression_is_true:
-              expression: "= (product_retail_price - item_sale_price)"
-
-
+              arguments:
+                expression: "= (product_retail_price - item_sale_price)"
   - name: int_ecommerce__first_order_created
     columns:
       # The * allows you to reference the YML anchor above for &user_id

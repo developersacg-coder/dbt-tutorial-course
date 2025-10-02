@@ -5,9 +5,8 @@ seeds:
     description: "An example of using a CSV file to load data into your warehouse"
     tests:
       - dbt_expectations.expect_table_row_count_to_equal:
-          value: 2
-
-    # Column names, descriptions, and tests can all be done as normal
+          arguments:
+            value: 2
     columns:
       - name: id
         tests:
