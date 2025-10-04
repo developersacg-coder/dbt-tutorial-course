@@ -31,4 +31,21 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   lessons:
-    +materialized: table
+    staging:
+      +schema: bronze
+      +materialized: table
+      +persist_docs:
+        relation: true
+        columns: true
+    intermediate:
+      +schema: silver
+      +materialized: table
+      +persist_docs:
+        relation: true
+        columns: true
+    mart:
+      +schema: gold
+      +materialized: table
+      +persist_docs:
+        relation: true
+        columns: true
