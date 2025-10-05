@@ -63,7 +63,7 @@ models:
 unit_tests:
   - name: test_profit_and_discounts
     description: "Check that we're calculating profit and discounts correctly"
-    model: int_ecommerce__order_items_products
+    model: int_ecommerce__orders_items_products
     given:
       - input: ref('stg_ecommerce__products')
         rows:
