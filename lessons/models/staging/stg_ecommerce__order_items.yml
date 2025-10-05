@@ -1,10 +1,10 @@
 version: 2
 
 models:
-  - name: "stg_ecommerce__order_items"
+  - name: stg_ecommerce__order_items
     description: ""
     columns:
-        - name: id AS order_item_id
+        - name: order_item_id
           description: ""
           data_tests:
           - not_null

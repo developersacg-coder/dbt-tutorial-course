@@ -58,3 +58,19 @@ models:
         description: "product_retail_price minus item_sale_price"
         data_tests:
           - not_null
+
+
+unit_tests:
+  - name: test_profit_and_discounts
+    description: "Check that we're calculating profit and discounts correctly"
+    model: int_ecommerce__order_items_products
+    given:
+      - input: ref('stg_ecommerce__products')
+        rows:
+          - {product_id: 1234, cost: 5, retail_price: 10}
+      - input: ref('stg_ecommerce__order_items')
+        rows:
+          - {product_id: 1234, item_sale_price: 7}
+    expect:
+      rows:
+        - {item_profit: 2, item_discount: 3}

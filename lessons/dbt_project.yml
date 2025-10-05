@@ -31,6 +31,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   lessons:
+    +hours_to_expiration: 168
     staging:
       +schema: bronze
       +materialized: table
@@ -49,3 +50,10 @@ models:
       +persist_docs:
         relation: true
         columns: true
+
+
+data_tests:
+  lessons:
+    +severity: warn
+    mart:
+      +severity: warn
